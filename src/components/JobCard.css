@@ -1,0 +1,16 @@
+.card-container {
+    width: 30%;
+    margin: 10px;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    border: 1px grey;
+  }
+  
+  @media (max-width: 768px) {
+    .card-container {
+      width: 100%;
+      margin: 10px auto;
+    }
+  }
+  

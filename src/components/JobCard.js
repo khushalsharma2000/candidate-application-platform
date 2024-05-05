@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardContent, Typography, Button, CardMedia } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
+import FlashOnIcon from '@material-ui/icons/FlashOn';
+import './JobCard.css';
 
 const JobCard = ({ job }) => {
   const [expanded, setExpanded] = useState(false);
@@ -23,11 +25,12 @@ const JobCard = ({ job }) => {
   } = job;
 
   return (
-    <Card style={{ width: '30%', margin: '10px', display: 'inline-block', verticalAlign: 'top', position: 'relative' }}>
+    <Card  className = "card-container" >
       {logoUrl && (
         <CardMedia
           component="img"
           image={logoUrl}
+          alt="Company Logo"
           style={{
             width: '40px',
             height: '40px',
@@ -40,7 +43,11 @@ const JobCard = ({ job }) => {
           }}
         />
       )}
-      <CardContent style={{ paddingLeft: '60px', display: 'flex', flexDirection: 'column' }}>
+      <CardContent style={{ 
+        paddingLeft: '60px', 
+        display: 'flex', 
+        flexDirection: 'column' 
+      }}>
         <Typography variant="h6">{job.jobTitle}</Typography>
         {companyName && (
           <Typography variant="subtitle1" style={{ color: 'grey' }}>
@@ -53,33 +60,34 @@ const JobCard = ({ job }) => {
           </Typography>
         )}
         {location && (
-          <Typography variant="subtitle2">
+          <Typography variant="subtitle2" style={{ fontWeight: '800' }}>
             {location.charAt(0).toUpperCase() + location.slice(1)}
           </Typography>
         )}
 
         {minJdSalary !== null && maxJdSalary !== null && (
           <Typography variant="body2" style={{ display: 'flex', alignItems: 'center', color: '#4D5DC4' }}>
-            Estimated Salary: {minJdSalary}k - {maxJdSalary}k {salaryCurrencyCode}
-            {salaryCurrencyCode === 'USD' && <CheckIcon style={{ marginLeft: '5px' }} />}
+            Estimated Salary: {minJdSalary}k - {maxJdSalary}k {salaryCurrencyCode}PA
+
+            {salaryCurrencyCode === 'USD' && <CheckIcon style={{ marginLeft: '5px', color: 'green' }} />}
           </Typography>
         )}
         {minJdSalary !== null && maxJdSalary === null && (
           <Typography variant="body2" style={{ display: 'flex', alignItems: 'center', color: '#4D5DC4' }}>
-            Estimated Salary: {minJdSalary}k {salaryCurrencyCode}
-            {salaryCurrencyCode === 'USD' && <CheckIcon style={{ marginLeft: '5px' }} />}
+            Estimated Salary: {minJdSalary}k {salaryCurrencyCode}PA
+            {salaryCurrencyCode === 'USD' && <CheckIcon style={{ marginLeft: '5px',color: 'green' }} />}
           </Typography>
         )}
 
         {minJdSalary === null && maxJdSalary !== null && (
           <Typography variant="body2" style={{ display: 'flex', alignItems: 'center', color: '#4D5DC4' }}>
-            Estimated Salary: {maxJdSalary}k {salaryCurrencyCode}
-            {salaryCurrencyCode === 'USD' && <CheckIcon style={{ marginLeft: '5px' }} />}
+            Estimated Salary: {maxJdSalary}k {salaryCurrencyCode}PA
+            {salaryCurrencyCode === 'USD' && <CheckIcon style={{ marginLeft: '5px', color: 'green' }} />}
           </Typography>
         )}
 
-        {jobDescription && <Typography variant="body2" style={{ fontWeight: '500' }} >About Company:</Typography>}
-        {jobDescription && <Typography variant="body2" style={{ fontWeight: '800' }} >About us</Typography>}
+        {jobDescription && <Typography variant="body2" style={{ fontWeight: '500' }}>About Company:</Typography>}
+        {jobDescription && <Typography variant="body2" style={{ fontWeight: '800' }}>About us</Typography>}
         <Typography variant="body2">
           {jobDescription && (
             expanded ? jobDescription : `${jobDescription.slice(0, 100)}...`
@@ -92,10 +100,14 @@ const JobCard = ({ job }) => {
             </div>
           )}
         </Typography>
-        {minExp && <Typography variant="body2">Minimum Experience: {minExp} years</Typography>}
+        {minExp && (
+          <Typography variant="body2" style={{ color: 'grey' }}>
+            Minimum Experience: {minExp} years 
+          </Typography>
+        )}
 
         <Button variant="contained" style={{ backgroundColor: '#5DEBD3', color: 'black' }} href={applyLink} target="_blank">
-          Easy Apply
+        <FlashOnIcon style={{color:'yellow'}}/>Easy Apply 
         </Button>
 
       </CardContent>
