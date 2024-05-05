@@ -12,7 +12,7 @@ const App = () => {
         myHeaders.append('Content-Type', 'application/json');
 
         const body = JSON.stringify({
-          limit: 20,
+          limit: 10,
           offset: 0
         });
 
